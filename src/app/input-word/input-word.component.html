@@ -1,0 +1,16 @@
+<form (submit)="onSubmit()">
+  <input
+    #input
+    id="input"
+    type="text"
+    name="inputWord"
+    placeholder="Type a word"
+    autocomplete="off"
+    (ngModelChange)="onLetter.emit($event)"
+    (keydown)="onKeyDown($event, input)"
+    [(ngModel)]="inputWord"
+    required
+  />
+  <button type="submit">Submit</button>
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+</form>

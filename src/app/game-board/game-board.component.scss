@@ -1,0 +1,95 @@
+.game {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1rem;
+}
+
+.grid,
+.words {
+  flex: 1;
+  margin: 1rem;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.words {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.title {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.highlight {
+  background-color: #3f51b5;
+  color: white;
+}
+
+.timer-score {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+@media (max-width: 767px) {
+  .game {
+    flex-direction: column;
+  }
+
+  .grid,
+  .words {
+    margin: 1rem auto;
+  }
+
+  .timer-score {
+    position: static;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+}
+
+table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  .active {
+    background-color: yellow;
+  }
+}
+
+td {
+  border: 1px solid #000;
+  padding: 2em;
+  text-align: center;
+  width: 3em;
+  height: 3em;
+  font-size: 1.5rem;
+}
+
+.input {
+  display: flex;
+  justify-content: center;
+  margin: 2rem;
+}
+
+.existing-word {
+  &:hover {
+    background-color: aqua; 
+  }
+}
+
+.connected-clients {
+  flex: .5;
+}

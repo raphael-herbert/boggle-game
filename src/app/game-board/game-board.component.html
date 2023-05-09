@@ -1,0 +1,77 @@
+
+<ng-container *ngIf="remainingTime$ | async as remainingTime">
+  <ng-container *ngIf="board$ | async as board">
+    <div class="timer-score">
+      <h3>Hello {{ name }} !</h3>
+
+      <div *ngIf="remainingTime > 30; else recap">
+        Time remaining: {{ remainingTime - 30 }} seconds
+      </div>
+      <ng-template #recap>
+        <div>Next game in : {{ remainingTime }} seconds</div>
+      </ng-template>
+      <div>Score: {{ score }}</div>
+    </div>
+
+    <div class="game">
+      <div class="connected-clients">
+        <div class="title">Connected Players</div>
+        <ul>
+          <li *ngFor="let client of connectedClients | keyvalue">
+            {{ client.value.nickname }} <ng-container *ngIf="remainingTime <= 30"> - Score: {{ client.value.score }}</ng-container>
+          </li>
+        </ul>
+      </div>
+
+      <div class="grid">
+        <table>
+          <tr *ngFor="let row of board.board; index as i">
+            <td *ngFor="let letter of row; index as j" [ngClass]="{ active: grid.length > 0 && grid[i][j].active }">
+              {{ letter }}
+            </td>
+          </tr>
+        </table>
+
+        <ng-container *ngIf="remainingTime > 30">
+          <app-input-word
+            #inputWord
+            class="input"
+            (onWord)="onSubmitWord($event)"
+            (onLetter)="onSubmitLetter($event)"
+            [errorMessage]="message"
+          ></app-input-word>
+        </ng-container>
+      </div>
+
+      <div class="words">
+        <div *ngIf="remainingTime > 30; else results">
+          <div class="title">Found Words</div>
+          <ul>
+            <li *ngFor="let word of foundWords">{{ word }}</li>
+          </ul>
+        </div>
+        <ng-template #results>
+          <div>
+            <div class="title">
+              Existing Words
+              <span
+                >{{ foundWords.length }} / {{ board.validWords.length }}</span
+              >
+            </div>
+            <ul>
+              <li
+                *ngFor="let word of board.validWords"
+                [class.highlight]="foundWords.includes(word)"
+                class="existing-word"
+                (mouseenter)="onSubmitLetter(word)"
+                (mouseleave)="onSubmitLetter('')"
+              >
+                {{ word }}
+              </li>
+            </ul>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>

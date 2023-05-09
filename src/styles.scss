@@ -1,1 +1,38 @@
-/* You can add global styles to this file, and also import other style files */
+@use "@angular/material" as mat;
+@include mat.core();
+
+$boggle-game-primary: mat.define-palette(mat.$indigo-palette);
+$boggle-game-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$boggle-game-warn: mat.define-palette(mat.$red-palette);
+$boggle-game-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $boggle-game-primary,
+      accent: $boggle-game-accent,
+      warn: $boggle-game-warn,
+    ),
+  )
+);
+
+@include mat.all-component-themes($boggle-game-theme);
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+html {
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}

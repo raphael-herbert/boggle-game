@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Hi !</h1>
+<div mat-dialog-content>
+  <p>Enter your nickname !</p>
+  <mat-form-field appearance="fill">
+    <mat-label>Nickname</mat-label>
+    <input matInput [(ngModel)]="name">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button [disabled]="!name" mat-button [mat-dialog-close]="name" cdkFocusInitial>Ok</button>
+</div>
